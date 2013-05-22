@@ -2,11 +2,13 @@
 
 				<div id="inner-footer" class="wrap clearfix">
 
+					<!--
 					<nav role="navigation">
-							<?php bones_footer_links(); ?>
+							<?php // bones_footer_links(); ?>
 									</nav>
+					-->
 
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.</p>
+						<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.</p>
 
 				</div> <!-- end #inner-footer -->
 
