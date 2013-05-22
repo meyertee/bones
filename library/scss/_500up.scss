@@ -1,0 +1,44 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
+
+@include at-breakpoint($break-500) {
+	@include with-grid-settings($break-500-total-columns,$break-500-column-width,$break-500-gutter-width,$break-500-grid-padding) {
+		
+		/*********************
+		LAYOUT & GRID STYLES
+		*********************/
+		$container-style: $break-500-container-style;
+
+		#container {
+			@include container;
+		}
+
+		/*********************
+		SIDEBARS & ASIDES
+		*********************/
+
+		.sidebar {}
+
+			.widgettitle {}
+
+			.widget {
+				&:nth-child(2n+1){
+					@include span-columns(3,8);
+				}
+				&:nth-child(2n){
+					@include span-columns(5 omega,8);
+				}
+			}
+	}
+}

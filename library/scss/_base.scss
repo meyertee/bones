@@ -11,15 +11,18 @@ and will be used across all viewports.
 
 ******************************************************************/
 
+@import "compass/typography/vertical_rhythm";
+@import "compass/typography/text/replacement";
+
 /*********************
 GENERAL STYLES
 *********************/
 
+@include establish-baseline();
+
 body {
 	font-family: $serif;
-	font-size: 100%;
-	line-height: 1.5;
-	color: #565656;
+	color: $text-color;
 }
 
 /********************
@@ -67,9 +70,10 @@ style a page via class
 LAYOUT & GRID STYLES
 *********************/
 
-.wrap {
-	width: 96%;
-	margin: 0 auto;
+#container {
+	@include container($total-columns);
+	min-width: $container-min-width;
+	max-width: $container-max-width;
 }
 
 /*********************
@@ -78,6 +82,7 @@ LINK STYLES
 
 a, a:visited {
 	color: $link-color;
+	text-decoration: underline;
 
 	/* on hover */
 	&:hover, &:focus {
@@ -96,7 +101,7 @@ a, a:visited {
 		so it basically works like the :hover selector
 		for mobile devices.
 		*/
-		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+		-webkit-tap-highlight-color : $link-hover;
 	}
 }
 
@@ -107,11 +112,8 @@ H1, H2, H3, H4, H5 STYLES
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	font-family: $sans-serif;
 	text-rendering: optimizelegibility;
-	font-weight: 500;
-	/*
-	if you're going to use webfonts, be sure to check your weights
-	http://css-tricks.com/watch-your-font-weight/
-	*/
+	font-weight: 700;
+	margin:0;
 
 	/* removing text decoration from all headline links */
 	a {
@@ -120,39 +122,41 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 2.5em;
-	line-height: 1.333em;
+	@include adjust-font-size-to(25px, 1.3);
 }
 
 h2, .h2 {
-	font-size: 1.75em;
-	line-height: 1.4em;
-	margin-bottom: 0.375em;
+	@include adjust-font-size-to(25px);
 }
 
 h3, .h3 {
-	font-size: 1.125em;
+	@include adjust-font-size-to(21px);
 }
 
 h4, .h4 {
-	font-size: 1.1em;
-	font-weight: 700;
+	@include adjust-font-size-to(15px);
 }
 
 h5, .h5 {
-	font-size: 0.846em;
-	line-height: 2.09em;
-	text-transform: uppercase;
-	letter-spacing: 2px;
+	@include adjust-font-size-to(15px);
 }
 
 /*********************
 HEADER STYLES
 *********************/
 
+#header-nav-wrap{
+	@include margin-leader(1);
+}
+
 .header {}
 
-	#logo {}
+	#logo {
+		a {
+			display: block;
+			@include replace-text-with-dimensions("logo.png", left, top);
+		}
+	}
 
 /*********************
 NAVIGATION STYLES
@@ -174,10 +178,6 @@ and more scalable.
 
 		a {
 			display: block;
-			text-decoration: none;
-			padding: 10px 10px;
-			background-color: #eee;
-			border-bottom: 1px solid #ccc;
 
 			/*
 			remember this is for mobile ONLY, so there's no need
@@ -207,8 +207,6 @@ and more scalable.
 			li {
 
 				a {
-					padding-left: 30px;
-
 					&:hover,
 					&:focus {}
 
@@ -275,15 +273,33 @@ POSTS & CONTENT STYLES
 
 		/* post meta */
 		.byline {
-			color: #999;
-
+			display:none;
 			time {}
 		}
 
 		/* entry content */
 		.entry-content {
-
-			p {}
+			font-size: 23px;
+			line-height: 28px;
+			
+			b, strong {
+				font-size: 21px;
+			}
+			.client, blockquote {
+				display:block;
+				margin:5px 0;
+				font-weight: bold;
+				font-size: 11px;
+				line-height: 17px;
+				text-transform: uppercase;
+				a{
+					padding: 0 1px;
+				}
+			}
+			
+			p {
+				margin:0;
+			}
 
 
 			ul, ol, table, dl {}
@@ -316,15 +332,11 @@ POSTS & CONTENT STYLES
 
 			dt {}
 
-			dd {
-				margin-left: 0;
-				font-size: 0.9em;
-				color: #787878;
-				margin-bottom: 1.5em;
-			}
+			dd {}
 
 			img {
-				margin: 0 0 1.5em 0;
+				margin: 0;
+				@include margin-trailer();
 				max-width: 100%;
 				height: auto;
 			}
@@ -344,18 +356,13 @@ POSTS & CONTENT STYLES
 				height: auto;
 			}
 
-			pre {
-				background: #eee;
-				border: 1px solid #cecece;
-				padding: 10px;
-			}
+			pre {}
 
 		} /* end .entry-content */
 
 		.wp-caption {
 			max-width: 100%;
-			background: #eee;
-			padding: 5px;
+			@include margin-trailer();
 
 			/* images inside wp-caption */
 			img {
@@ -365,8 +372,6 @@ POSTS & CONTENT STYLES
 			}
 
 			p.wp-caption-text {
-				font-size: 0.85em;
-				margin: 4px 0 7px;
 				text-align: center;
 			}
 
@@ -374,10 +379,16 @@ POSTS & CONTENT STYLES
 
 		/* image gallery styles */
 		.gallery {
+			@include margin-leader(1);
+			
+			line-height:0;
 
 			dl {
-
-				a {}
+				margin:0;
+				
+				a {
+					display:block;
+				}
 
 				img {}
 
@@ -538,7 +549,6 @@ COMMENT STYLES
 		overflow: hidden;
 		list-style-type: none;
 		margin-bottom: 1.5em;
-		padding: 0.7335em 10px;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -585,12 +595,8 @@ COMMENT STYLES
 
 	/* general comment classes */
 	.alt {}
-	.odd {
-		background: #eee;
-	}
-	.even {
-		background: #fefefe;
-	}
+	.odd {}
+	.even {}
 	.parent {}
 	.comment {}
 	.children {}
@@ -604,8 +610,6 @@ COMMENT STYLES
 
 	/* vcard */
 	.vcard {
-		margin-left: 50px;
-
 		cite.fn {
 			font-weight: 700;
 			font-style: normal;
@@ -618,35 +622,21 @@ COMMENT STYLES
 			float: right;
 
 			a {
-				color: #999;
-				text-decoration: none;
-
-				&:hover {
-					text-decoration: underline;
-				}
-
+				&:hover {}
 			}
 
 		}
 
 		img.photo {}
 
-		img.avatar {
-			position: absolute;
-			left: 10px;
-			padding: 2px;
-			border: 1px solid #cecece;
-			background: #fff;
-		}
+		img.avatar {}
 
 	} /* end .commentlist .vcard */
 
 
 	/* comment meta */
 	.comment-meta {
-
 		a {}
-
 	}
 
 	.commentmetadata {
@@ -657,32 +647,14 @@ COMMENT STYLES
 
 	/* comment content */
 	.comment_content {
-		margin-left: 50px;
-
-		p {
-			margin: 0.7335em 0 1.5em;
-			font-size: 1em;
-			line-height: 1.5em;
-		}
+		p {}
 
 	} /* end .commentlist .comment_content */
 
 	/* comment reply link */
 	.comment-reply-link {
-		text-decoration: none;
-		float: right;
-		background: #4598bb;
-		padding: 3px 5px;
-		color: #fff;
-		opacity: 0.65;
-		margin-bottom: 10px;
-		font-weight: 700;
-		font-size: 0.9em;
-
 		&:hover,
-		&:focus {
-			opacity: 1;
-		}
+		&:focus {}
 
 	} /* end .commentlist .comment-reply-link */
 
@@ -693,12 +665,9 @@ COMMENT FORM STYLES
 ******************************************************************/
 
 .respond-form {
-	margin: 1.5em 10px;
-	padding-bottom: 2.2em;
+	margin: 1.5em 0;
 
 	form {
-		margin: 0.75em 0;
-
 		li {
 			list-style-type: none;
 			clear: both;
@@ -781,21 +750,44 @@ COMMENT FORM STYLES
 SIDEBARS & ASIDES
 *********************/
 
-.sidebar {}
+.sidebar {
+	h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+		color: $nav-header-color;
+		margin:0;
+	}
+}
 
 	.widgettitle {}
 
 	.widget {
 
+		@include margin-leader(1);
+		
+		&:nth-child(2n+1){
+			@include span-columns(3,6);
+		}
+		&:nth-child(2n){
+			@include span-columns(3 omega,6);
+			/*ul li{
+				font-style: italic;
+			}*/
+		}
+		
 		ul {
+			margin: 0;
 
 			li {
+				@include adjust-font-size-to(11px, .75);
 
 				&:first-child {}
 
 				&:last-child {}
 
-				a {}
+				a {
+					color: $nav-color;
+					font-weight: bold;
+					text-decoration: none;
+				}
 
 				/* deep nesting */
 				ul {}
@@ -812,6 +804,7 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
+	@include margin-trailer(0.5);
 }
 
 	/*
@@ -834,5 +827,8 @@ FOOTER STYLES
 	} /* end .footer-links */
 
 
-	.copyright {}
+	.copyright {
+		@include adjust-font-size-to(11px, .75);
+		font-weight: bold;
+	}
 
