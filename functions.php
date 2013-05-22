@@ -48,8 +48,7 @@ require_once('library/custom-post-type.php'); // you can disable this if you lik
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'bones-thumb-700', 700, 700, true );
 /*
 to add more sizes, simply copy a line from above
 and change the dimensions & name. As long as you
@@ -160,6 +159,3 @@ function bones_wpsearch($form) {
 	</form>';
 	return $form;
 } // don't remove this bracket!
-
-
-?>
