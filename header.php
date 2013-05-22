@@ -42,22 +42,26 @@
 	<body <?php body_class(); ?>>
 
 		<div id="container">
+			<div id="header-nav-wrap">
+				<header class="header" role="banner">
 
-			<header class="header" role="banner">
+					<div id="inner-header" class="wrap clearfix">
 
-				<div id="inner-header" class="wrap clearfix">
+						<!-- to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> -->
+						<div id="logo" class="h1"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></div>
 
-					<!-- to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> -->
-					<p id="logo" class="h1"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
+						<!-- if you'd like to use the site description you can un-comment it below -->
+						<?php // bloginfo('description'); ?>
 
-					<!-- if you'd like to use the site description you can un-comment it below -->
-					<?php // bloginfo('description'); ?>
+						<!--
+						<nav role="navigation">
+							<?php // bones_main_nav(); ?>
+						</nav>
+						-->
 
+					</div> <!-- end #inner-header -->
 
-					<nav role="navigation">
-						<?php bones_main_nav(); ?>
-					</nav>
+				</header> <!-- end header -->
 
-				</div> <!-- end #inner-header -->
-
-			</header> <!-- end header -->
+				<?php get_sidebar(); ?>
+			</div>
