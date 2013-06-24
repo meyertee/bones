@@ -16,7 +16,7 @@ and tools. I put it up here so it's
 right up top and clean.
 *********************/
 
-// we're firing all out initial functions at the start
+// we're firing all our initial functions at the start
 add_action('after_setup_theme','bones_ahoy', 16);
 
 function bones_ahoy() {
@@ -48,8 +48,8 @@ function bones_ahoy() {
     add_filter('the_content', 'bones_filter_ptags_on_images');
     // cleaning up excerpt
     add_filter('excerpt_more', 'bones_excerpt_more');
-
 } /* end bones ahoy */
+
 
 /*********************
 WP_HEAD GOODNESS

@@ -23,7 +23,10 @@ sidebars, comments, ect.
 	- custom google+ integration
 	- adding custom fields to user profiles
 */
+require_once('library/custom-nav-item.php');
+require_once('library/gallery-no-link.php');
 require_once('library/bones.php'); // if you remove this, bones will break
+
 /*
 2. library/custom-post-type.php
 	- an example custom post type
