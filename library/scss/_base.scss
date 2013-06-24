@@ -293,6 +293,7 @@ POSTS & CONTENT STYLES
 			.client, blockquote {
 				display:block;
 				margin:5px 0;
+				margin-bottom: 1.5em;
 				font-weight: bold;
 				font-size: 11px;
 				line-height: 25px;
@@ -341,7 +342,7 @@ POSTS & CONTENT STYLES
 
 			img {
 				margin: 0;
-				@include margin-trailer();
+				margin-bottom: 1em;
 				max-width: 100%;
 				height: auto;
 			}
