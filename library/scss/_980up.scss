@@ -41,7 +41,7 @@ come into play. Have fun!
 		// to align the logo with the headline
 		.header {
 			margin-top: 3px;
-			@include margin-trailer(2);
+			margin-bottom: 1em;
 		}
 
 			#logo {}
@@ -172,7 +172,7 @@ come into play. Have fun!
 				
 				@include margin-trailer(1);
 				&:first-child {
-					@include margin-trailer(2);
+					margin-bottom: 6.2em;
 				}
 				
 				ul {
