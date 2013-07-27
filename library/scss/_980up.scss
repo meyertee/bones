@@ -185,8 +185,30 @@ come into play. Have fun!
 						ul {}
 					}
 				}
-			}
 
+				&:nth-child(2){
+					.widgettitle{
+						cursor: default;
+					}
+					.widgettitle:after{
+						content: none;
+						margin: 0;
+					}
+					.widgettitle.is-open:after{
+						content: none;
+					}
+				}
+
+				.menu-projekte-container{
+					position: relative;
+					display: block !important;
+					background-color: transparent;
+					padding: 0;
+					margin: 0;
+					box-shadow: none;
+					border: none;
+				}
+			}
 
 			/* links widget */
 			.widget_links {}

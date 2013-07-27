@@ -13,6 +13,7 @@ and will be used across all viewports.
 
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/text/replacement";
+@import "compass/css3/box-shadow";
 
 /*********************
 GENERAL STYLES
@@ -341,7 +342,7 @@ POSTS & CONTENT STYLES
 
 			dd {}
 
-			img {
+			img, .mejs-video, video, object {
 				margin: 0;
 				margin-bottom: 1em;
 				max-width: 100%;
@@ -358,10 +359,10 @@ POSTS & CONTENT STYLES
 			.alignright, img.alignright {}
 			.aligncenter, img.aligncenter {}
 
-			video, object {
+			/*video, object {
 				max-width: 100%;
 				height: auto;
-			}
+			}*/
 
 			pre {}
 
@@ -784,11 +785,16 @@ SIDEBARS & ASIDES
 			}*/
 		}
 		
+		.widgettitle{
+			margin-bottom: 0.3em;
+		}
+		
 		ul {
 			margin: 0;
 
 			li {
-				@include adjust-font-size-to(11px, .75);
+				@include adjust-font-size-to(12px, .72);
+				margin-bottom: .1em;
 
 				&:first-child {}
 
@@ -800,13 +806,16 @@ SIDEBARS & ASIDES
 					text-decoration: none;
 
 					&:hover, &:focus {
-						color: $link-hover;
+						color: $nav-hover;
 					}
 				}
 
+				.menu-item-categories, .menu-item-title {
+					display: inline-block;
+				}
+
 				.menu-item-categories {
-					font-weight: bold;
-					font-style: italic;
+					font-weight: 500;
 					&:after{
 						content:": ";
 					};
@@ -818,16 +827,46 @@ SIDEBARS & ASIDES
 			}
 
 		}
+		
+		&:nth-child(2){
+			ul li{
+				margin-bottom: .6em;
+			}
+		}
+
+		&:nth-child(2){
+			.widgettitle{
+				cursor: pointer;
+			}
+			.widgettitle:after{
+				content: "\25BC";
+				font-size: 60%;
+				margin-left: 5px;
+			}
+			.widgettitle.is-open:after{
+				content: "\25B2";
+			}
+		}
+			
+		.menu-projekte-container{
+			position: absolute;
+			display: none;
+			background-color: white;
+			background-color: rgba(255,255,255,1);
+			padding: 10px 20px 10px 20px;
+			margin: 0 $grid-padding 0 -20px;
+			@include single-box-shadow(rgba(0,0,0,0.3), 0, 4px, 5px, 0);
+			border: 1px solid rgba(0,0,0,0.2);
+			border-top: none;
+		}
 
 		/* highlight current page */
 		li.current-menu-item,
 		li.current_page_item,
 		li.current-page-ancestor {
-
 			a, .menu-item-categories {
-				color: #787878;
+				color: $nav-active;
 			}
-
 		}  /* end current highlighters */
 
 	}
