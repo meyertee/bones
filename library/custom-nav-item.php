@@ -25,12 +25,21 @@ class description_walker extends Walker_Nav_Menu {
 
         if (sizeof($categoryNames) > 0){
             $categoryNamesStr = sprintf('<span class="menu-item-categories">%s</span> ', esc_html(join(" ", $categoryNames)));
+			$categoryNamesStr .= '<span class="menu-item-title">';
 
             $origArgsBefore = $args->link_before;
             if ($origArgsBefore){
                 $args->link_before = $origArgsBefore . $categoryNamesStr;
             } else {
                 $args->link_before = $categoryNamesStr;
+            }
+
+            $closeTag = '</span>';
+            $origArgsAfter = $args->link_after;
+            if ($origArgsAfter){
+                $args->link_after = $closeTag . $origArgsAfter;
+            } else {
+                $args->link_after = $closeTag;
             }
 
             parent::start_el($output, $item, $depth, $args);
