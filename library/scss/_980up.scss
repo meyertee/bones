@@ -191,11 +191,11 @@ come into play. Have fun!
 						cursor: default;
 					}
 					.widgettitle:after{
-						content: none;
+						content: none !important;
 						margin: 0;
 					}
 					.widgettitle.is-open:after{
-						content: none;
+						content: none !important;
 					}
 				}
 
