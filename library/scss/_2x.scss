@@ -41,6 +41,8 @@ the original dimensions and you are good to go.
 */
 
 #logo {
-	background-image: image-url("logo@2x.png");
-	background-size: image-width("logo.png") image-height("logo.png");
+	a {
+		background-image: image-url("logo@2x.png");
+		background-size: image-width("logo.png") image-height("logo.png");
+	}
 }
