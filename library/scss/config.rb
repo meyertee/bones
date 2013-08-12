@@ -25,6 +25,7 @@ end
 
 
 # 3. You can select your preferred output style here (can be overridden via the command line):
+# e.g.: compass compile -e production
 #output_style = :expanded
 output_style = (environment == :production) ? :compressed : :expanded
 
