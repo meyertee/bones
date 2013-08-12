@@ -24,27 +24,28 @@ class description_walker extends Walker_Nav_Menu {
         }
 
         if (sizeof($categoryNames) > 0){
-            $categoryNamesStr = sprintf('<span class="menu-item-categories">%s</span> ', esc_html(join(" ", $categoryNames)));
-			$categoryNamesStr .= '<span class="menu-item-title">';
+			$beforeStr = '<span class="menu-item-title">';
 
             $origArgsBefore = $args->link_before;
             if ($origArgsBefore){
-                $args->link_before = $origArgsBefore . $categoryNamesStr;
+                $args->link_before = $origArgsBefore . $beforeStr;
             } else {
-                $args->link_before = $categoryNamesStr;
+                $args->link_before =$beforeStr;
             }
 
-            $closeTag = '</span>';
+            $afterStr = '</span>';
+            $afterStr = sprintf('<span class="menu-item-categories">%s</span>', esc_html(join(" ", $categoryNames)));
             $origArgsAfter = $args->link_after;
             if ($origArgsAfter){
-                $args->link_after = $closeTag . $origArgsAfter;
+                $args->link_after = $afterStr . $origArgsAfter;
             } else {
-                $args->link_after = $closeTag;
+                $args->link_after = $afterStr;
             }
 
             parent::start_el($output, $item, $depth, $args);
 
             $args->link_before = $origArgsBefore;
+            $args->link_after = $origArgsAfter;
         } else {
             parent::start_el($output, $item, $depth, $args);
         }
